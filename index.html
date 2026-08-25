@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Proposal: The 7-Day Fake Door Sprint | YEAH Association</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-pink: #FE0074;
+      --yellow: #FED732;
+      --black: #010101;
+      --card-bg: #121212;
+      --card-border: #262626;
+      --white: #FFFFFF;
+      --text-muted: #A3A3A3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Kanit', sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Header & CI */
+    .header {
+      border-bottom: 2px solid var(--card-border);
+      padding-bottom: 30px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo-pink { color: var(--neon-pink); }
+    .logo-yellow { color: var(--yellow); }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      border-left: 2px solid var(--neon-pink);
+      padding-left: 12px;
+    }
+
+    .badge-proposal {
+      background: rgba(254, 0, 116, 0.15);
+      color: var(--neon-pink);
+      border: 1px solid var(--neon-pink);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Sections */
+    .slide-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--neon-pink), var(--yellow));
+    }
+
+    .slide-title {
+      font-family: 'Poppins', 'Kanit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+    }
+
+    .slide-title span.number {
+      color: var(--yellow);
+      font-size: 1.2rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .highlight-pink { color: var(--neon-pink); }
+    .highlight-yellow { color: var(--yellow); }
+
+    p {
+      color: #D4D4D4;
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+      font-weight: 300;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .sub-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: all 0.2s ease;
+    }
+
+    .sub-card:hover {
+      border-color: rgba(254, 215, 50, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .sub-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* 5 Pillars Styling */
+    .pillar-card {
+      text-align: center;
+      padding: 20px 14px;
+      border-radius: 12px;
+      background: #181818;
+      border-top: 3px solid var(--card-border);
+    }
+
+    .pillar-card.active-discover { border-top-color: var(--neon-pink); background: rgba(254, 0, 116, 0.05); }
+    .pillar-card.active-develop { border-top-color: var(--yellow); }
+    .pillar-card.active-validate { border-top-color: var(--neon-pink); }
+    .pillar-card.active-connect { border-top-color: var(--yellow); }
+    .pillar-card.active-multiply { border-top-color: var(--neon-pink); }
+
+    .pillar-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    /* Table Styling */
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+
+    .styled-table th {
+      background-color: #1A1A1A;
+      color: var(--yellow);
+      text-align: left;
+      padding: 14px 16px;
+      font-weight: 600;
+      border-bottom: 2px solid var(--card-border);
+    }
+
+    .styled-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--card-border);
+      color: #CCCCCC;
+      vertical-align: top;
+    }
+
+    .styled-table tr:hover td {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Timeline Badges */
+    .time-pill {
+      display: inline-block;
+      background: rgba(254, 215, 50, 0.15);
+      color: var(--yellow);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 6px;
+    }
+
+    /* Risk Tag */
+    .risk-badge {
+      display: inline-block;
+      background: rgba(254, 0, 116, 0.2);
+      color: var(--neon-pink);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* Footnote */
+    .footnote {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER / CI BANNER -->
+    <header class="header">
+      <div class="logo-badge">
+        <div class="logo-text"><span class="logo-pink">Y</span><span class="logo-yellow">E</span><span class="logo-pink">A</span><span class="logo-yellow">H</span></div>
+        <div class="tagline">Young Entrepreneur Assembly Hub<br></div>
+      </div>
+      <div class="badge-proposal">Internal Discussion Draft • Core Team</div>
+    </header>
+
+    <!-- SLIDE 1: TITLE & CORE ESSENCE -->
+    <section class="slide-card">
+      <div class="slide-title"><span class="number">01</span> THE PROJECT VISION</div>
+      <h1 style="font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px;">
+        YEAH Future Talent Cohort #01
+      <h1 style="font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px;">
+        THE 7-DAY <span class="highlight-pink">Pretotyping</span> SPRINT
+      </h1>
+      <h3 style="color: var(--yellow); font-weight: 500; font-size: 1.3rem; margin-bottom: 24px;">
+        “เปลี่ยนผู้สร้างสิ่งที่ไม่มีใครซื้อ สู่การเป็นผู้สร้างที่ผ่านการพิสูจน์จากตลาดจริง”
+      </h3>
+      <p>
+        โปรเจกต์บ่มเพาะเชิงปฏิบัติการรูปแบบใหม่ของ YEAH ที่ฉีกกฎ Hackathon ทั่วไป โดยไม่แจกโจทย์จากองค์กร และไม่ตัดสินด้วยการคาดการณ์ แต่ตัดสินด้วย <strong>"แรงตอบรับจาก Market Demand จริงใน 7 วัน"</strong> ผ่านเทคนิค Pretotyping และ Micro-transactions และวัดผลด้วยยอดความสนใจจากผู้ที่สนใจซื้อจริงผ่านการล่า Waiting List จากลูกค้าจริงใน 7 วัน
+      </p>
+    </section>
+
+    <!-- SLIDE 2: PAIN POINT & OBJECTIVE -->
+    <section class="slide-card">
+      <div class="slide-title"><span class="number">02</span> PAIN POINT & OBJECTIVES</div>
+      <div class="grid-2">
+        <div class="sub-card">
+          <h4 class="highlight-pink">Pain Point</h4>
+          <p>
+            ในยุคที่ AI บูม เด็กรุ่นใหม่สามารถ <strong>Vibe Code หรือสร้าง Startup ได้ด้สยตนเอง</strong> ภายในไม่กี่ชั่วโมง แต่ 90% จมอยู่ในกับดัก <em>"สร้างตามใจตัวเองแต่ไม่มีใครใช้ การมองสถานการณ์ตลาดจริงไม่ขาดด้วยอคติของตัวเอง หรือการที่สถานการณ์ตลาดเปลี่ยนไปไวกว่าที่คาดการณ์ไว้ใน pitch deck"</em> ขาดทักษะการทำ Market Validation เชิงลึก และไม่กล้าเผชิญหน้ากับความจริงของตลาด
+          </p>
+        </div>
+        <div class="sub-card">
+          <h4 class="highlight-yellow">Core Objectives</h4>
+          <ul style="padding-left: 20px; color: #D4D4D4;">
+            <li style="margin-bottom: 8px;">ฝึกให้ผู้เข้าร่วมใช้ AI เพื่อ <strong>"ตั้งคำถามและจับผิดไอเดีย (Critical Thinking)"</strong></li>
+            <li style="margin-bottom: 8px;">เปลี่ยนวิธีคิดจากการสร้าง Product ไปสู่การสร้าง <strong>Pretotyping</strong> เพื่อหาความต้องการที่แท้จริง</li>
+            <li style="margin-bottom: 8px;">เปิดพื้นที่ให้ไอเดียที่ดู "แปลกหรือไร้สาระในตอนแรก" ได้มีโอกาสพิสูจน์ตัวเองในตลาดเสรีโดยไม่มีกรอบจำกัด</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: 5 PILLARS ALIGNMENT -->
+    <section class="slide-card">
+      <div class="slide-title"><span class="number">03</span> ALIGNMENT WITH YEAH'S 5 PILLARS</div>
+      <p>โปรเจกต์นี้ถูกออกแบบมาเพื่อตอบสนองต่อ 5 เสาหลักของสมาคม YEAH ครบทุกมิติ โดยเน้นเป็นพิเศษที่เสา <strong>DISCOVER</strong>:</p>
+      
+      <div class="grid-5">
+        <div class="pillar-card active-discover">
+          <div class="pillar-name highlight-pink">DISCOVER</div>
+          <small style="color: #bbb;">ค้นหาเพชรในตมที่พร้อมลุยจริง แม้ไม่มีผลงานหรือประสบการณ์สตาร์ทอัพมาก่อน</small>
+        </div>
+        <div class="pillar-card active-develop">
+          <div class="pillar-name highlight-yellow">DEVELOP</div>
+          <small style="color: #bbb;">สอนเทคนิค AI Prompting สำหรับ Stress-test และการทำ Pretotyping ที่ใช้งานได้จริง</small>
+        </div>
+        <div class="pillar-card active-validate">
+          <div class="pillar-name highlight-pink">VALIDATE</div>
+          <small style="color: #bbb;">พิสูจน์ด้วยสนามตลาดจริง 7 วัน มี Real Clicks และ Micro-pledges เป็นมาตรวัด</small>
+        </div>
+        <div class="pillar-card active-connect">
+          <div class="pillar-name highlight-yellow">CONNECT</div>
+          <small style="color: #bbb;">เชื่อมต่อ Founder รุ่นใหม่กับ Mentor, องค์กรพันธมิตร และ Talent อื่นๆ ในระบบ</small>
+        </div>
+        <div class="pillar-card active-multiply">
+          <div class="pillar-name highlight-pink">MULTIPLY</div>
+          <small style="color: #bbb;">ทีมที่ผ่านการ Validate จะถูกผลักดันต่อสู่ YEAH Incubation Hub เพื่อส่งต่อคุณค่า</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: TARGET PERSONAS & RECRUITMENT -->
+    <section class="slide-card">
+      <div class="slide-title"><span class="number">04</span> TARGET PERSONA & RECRUITING (30 SEATS)</div>
+      <p>เปิดรับผู้เข้าร่วม <strong>จำนวน 30 คน (ประมาณ 10-15 ทีม/เดี่ยว)</strong> แบ่งออกเป็น 2 แทร็กอย่างละครึ่งเพื่อความเท่าเทียม:</p>
+
+      <div class="grid-2">
+        <div class="sub-card">
+          <h4 class="highlight-yellow">Track A: Genesis (15 ที่นั่ง)</h4>
+          <p><strong>กลุ่มเป้าหมาย:</strong> ผู้มีไฟ มี Passion และความมุ่งมั่น แต่ยังขาดประสบการณ์จริง หรือไม่เคยทำธุรกิจ/สตาร์ทอัพมาก่อน</p>
+          <p><strong>เกณฑ์การคัดเลือก (Application Prompt):</strong><br>
+          <em>"ให้อธิบายปัญหาที่น่ารำคาญใจ น่าเบื่อ หรือสร้างความยุ่งยากในชีวิตประจำวันของคุณหรือคนรอบข้างมา 1 เรื่อง และลองเสนอวิธีแปลกใหม่ที่ไม่จำเจในการไปสืบดูว่าคนอื่นเดือดร้อนกับเรื่องนี้จริงไหม?"</em> (150-250 คำ หรือวิดีโอ 1 นาที)</p>
+          <small style="color: var(--text-muted);">*ประเมินจาก: ความเป็นคนช่างสังเกต และการคิดถึงพฤติกรรมมนุษย์</small>
+        </div>
+
+        <div class="sub-card">
+          <h4 class="highlight-pink">Track B: Pivot (15 ที่นั่ง)</h4>
+          <p><strong>กลุ่มเป้าหมาย:</strong> ผู้ที่เคยลองสร้างโปรเจกต์ กิจกรรมชมรม หรือสตาร์ทอัพแล้วไม่เวิร์ก หรือเคยล้มเหลวมาก่อน</p>
+          <p><strong>เกณฑ์การคัดเลือก (Application Prompt):</strong><br>
+          <em>"เล่าถึงโปรเจกต์ กิจกรรม หรือไอเดียที่คุณเคยลงมือทำแล้วมันไม่ปังหรือไม่ประสบความสำเร็จ เล่าว่าเกิดอะไรขึ้น และทำไมคุณถึงคิดว่ามันถึงล้มเหลว?"</em> (150-250 คำ หรือวิดีโอ 1 นาที)</p>
+          <small style="color: var(--text-muted);">*ประเมินจาก: สัญชาตญาณในการเข้าใจลูกค้าและตลาด และความพร้อมที่จะเรียนรู้จากตลาดจริง</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: 7-DAY SPRINT STRUCTURE & DAY 1 AGENDA -->
+    <section class="slide-card">
+      <div class="slide-title"><span class="number">05</span> THE 7-DAY SPRINT TIMELINE</div>
+
+      <div class="grid-3" style="margin-bottom: 30px;">
+        <div class="sub-card">
+          <span class="time-pill">DAY 1 (Onsite)</span>
+          <h4 style="color: var(--yellow);">The Foundation & Launch</h4>
+          <p style="font-size: 0.9rem;">เรียนรู้การใช้ AI จับผิดไอเดีย ทำ Pretotyping เชื่อมระบบ YEAH Escrow และกดเปิดตัวสู่อินเทอร์เน็ต</p>
+        </div>
+        <div class="sub-card">
+          <span class="time-pill">DAY 3 (Discord)</span>
+          <h4 style="color: var(--neon-pink);">Virtual Standup</h4>
+          <p style="font-size: 0.9rem;">ส่งตัวเลข Data 48 ชั่วโมงแรก หากยอดเป็นศูนย์ ทีมงานจะช่วยปรับ Positioning และทิศทาง</p>
+        </div>
+        <div class="sub-card">
+          <span class="time-pill">DAY 5 (Mandatory)</span>
+          <h4 style="color: var(--yellow);">Unconventional Growth Hack</h4>
+          <p style="font-size: 0.9rem;">ส่งหลักฐานการลงพื้นที่จริง ทำการตลาดแบบออฟไลน์ หรือวิธีแปลกใหม่ที่ไม่อิงแค่การโพสต์โซเชียล</p>
+        </div>
+      </div>
+
+      <h4 style="color: var(--white); margin-top: 20px; margin-bottom: 12px;">รายละเอียด Agenda วันที่ 1 (Onsite Workshop: 9 ชั่วโมงเต็ม)</h4>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th style="width: 20%;">เวลา</th>
+            <th style="width: 30%;">เซสชัน</th>
+            <th style="width: 50%;">รายละเอียดกิจกรรมและผู้รับผิดชอบ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09:00 - 10:00</td>
+            <td><strong>Registration & Sprint Alliance Mixer</strong></td>
+            <td>เปิดบอร์ดจับคู่ "Skills Barter" (ใครขาดอะไร/มีอะไร) ให้เวลาจับคู่เป็น <em>Sprint Alliance 1 สัปดาห์</em> หรือเลือกฉายเดี่ยวแบบ Solo Mode</td>
+          </tr>
+          <tr>
+            <td>10:00 - 11:30</td>
+            <td><strong>The Law of Market Failure & AI Interrogation</strong></td>
+            <td>ให้บริษัทมาให้ความรู้สิ่งที่ VC และตลาดมองหา สอนสร้าง Custom AI Agent (Gemini/Claude) เพื่อทำหน้าที่เป็น "AI VC สายโหด" คอยซักฟอกไอเดีย</td>
+          </tr>
+          <tr>
+            <td>11:30 - 12:30</td>
+            <td><strong>Designing the Pretotyping & Validation</strong></td>
+            <td>เรียนรู้กลไก Pretotyping, การออกแบบ Survey ที่ไม่เอนเอียง และการ Cross-check ข้อสันนิษฐาน AI ด้วยข้อมูลจริง (Google, สถิติต่างๆ)
+                <small style="color: var(--text-muted);">*หน้าที่การสอนจากบริษัทจะจบที่ Session นี้</small>
+            </td>
+          </tr>
+          <tr>
+            <td>12:30 - 13:30</td>
+            <td><strong>Lunch Break (Screens-Off)</strong></td>
+            <td>พักสมอง เติมพลัง ป้องกันอาการ Burnout ช่วงบ่าย</td>
+          </tr>
+          <tr>
+            <td>13:30 - 16:30</td>
+            <td><strong>The Asset Generation War Room</strong></td>
+            <td>ช่วงลงมือทำจริง ใช้ AI สร้าง Landing Page, Brand Assets, และแบบสอบถาม โดย YEAH Tech Team และสตาฟสามารถช่วยดูแลและแก้บักเท่านั้น</td>
+          </tr>
+          <tr>
+            <td>16:30 - 17:30</td>
+            <td><strong>Micro-Transaction & Growth Strategy</strong></td>
+            <td>ผูกระบบการจ่ายเงินมัดจำ/Pre-order (1-10 บาท) เข้ากับ <strong>YEAH Central Escrow QR</strong> เพื่อ validate ว่าเกิดความต้องการจริงจากตลาด และวางแผนแคมเปญ Growth Hack วันที่ 5</td>
+          </tr>
+          <tr>
+            <td>17:30 - 18:00</td>
+            <td><strong>The Pledge & Launch</strong></td>
+            <td>เชิญแขก/กรรมการกลับเข้าห้อง ทุกทีมประกาศตัวเลขและยอดเป้าหมาย แล้ว Publish ปล่อยของสู่ตลาดจริง</td>
+          </tr>
+          <tr>
+            <td>18:00 - 18:30</td>
+            <td><strong>The Live Fundraise (Optional)</strong></td>
+            <td>Networking อย่างไม่เป็นทางการ เปิดให้ทุกคนในห้องสแกน QR อุดหนุน (เข้าร่วม Product Waiting List ของแต่ละทีม)หรือระดมทุนก้อนแรกให้โปรเจกต์ที่ตนเองชื่นชอบ</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 6: DAY 7 ROUNDTABLE & VERIFICATION -->
+    <section class="slide-card">
+      <div class="slide-title"><span class="number">06</span> DAY 7: THE RECKONING (ROUNDTABLE)</div>
+      <div class="grid-2">
+        <div class="sub-card">
+          <h4 class="highlight-yellow">รูปแบบการตัดสิน (Circle Format)</h4>
+          <p>ไม่มีเวที แต่เป็นการให้ทุกคนนั่งล้อมวงแบบกลมเพื่อพูดคุย แลกเปลี่ยน Feedback และเล่าสิ่งที่ไม่เป็นไปตามแผน</p>
+          <p><strong>น้ำหนักคะแนน:</strong></p>
+          <ul style="padding-left: 20px; color: #D4D4D4;">
+            <li><strong>60% Market Research & Grit:</strong> ความพยายามในการหาความจริง ความลึกของการตั้งคำถาม และวิธีแก้เกมเมื่อตลาดปฏิเสธ</li>
+            <li><strong>40% Traction & Conversion:</strong> ตัวเลขสถิติ Conversion Rate และยอด Micro-pledge จริงผ่านระบบ Escrow</li>
+          </ul>
+        </div>
+        <div class="sub-card">
+          <h4 class="highlight-pink">การป้องกันโกง & การโปรโมต YEAH</h4>
+          <p><strong>การโปรโมตแบบ Organic:</strong> ทีมที่โพสต์โซเชียลมีเดียและแท็ก <code>@YEAH_Official</code> จะได้รับการ Repost วันละ 1 ครั้งตามมาตรฐาน</p>
+          <p><strong>การยืนยันทีมออฟไลน์:</strong> ทีมที่ลงพื้นที่แจกใบปลิวหรือสัมภาษณ์ ต้องมีแบนเนอร์/โลโก้ YEAH บนเอกสาร, สวมป้ายชื่อ YEAH และส่งวิดีโอ Proof of Hustle 60 วินาที</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: BENEFITS FOR ALL PARTIES -->
+    <section class="slide-card">
+      <div class="slide-title"><span class="number">07</span> VALUE PROPOSITION & BENEFITS</div>
+      <div class="grid-3">
+        <div class="sub-card" style="border-top: 3px solid var(--neon-pink);">
+          <h4 class="highlight-pink">คุณค่าสำหรับ YEAH</h4>
+          <ul style="font-size: 0.9rem; padding-left: 16px; color: #D4D4D4;">
+            <li>บรรลุเป้าหมาย <strong>DISCOVER</strong> ในการดึงดูด Talent ที่มีของแต่ไม่มีเวที</li>
+            <li>ได้ <strong>Market Intelligence</strong> ชุดข้อมูลพฤติกรรมจริงของ Gen Z ไทยที่ผ่านการทดสอบ Transaction</li>
+            <li>สร้างเครือข่าย Founder รุ่นใหม่ที่ผูกพันกับสมาคมเพื่อป้อนสู่โครงการถัดไป</li>
+          </ul>
+        </div>
+        <div class="sub-card" style="border-top: 3px solid var(--yellow);">
+          <h4 class="highlight-yellow">คุณค่าสำหรับ Corporate / Partner</h4>
+          <ul style="font-size: 0.9rem; padding-left: 16px; color: #D4D4D4;">
+            <li><strong>Talent Scouting ของจริง:</strong> ได้เห็นทักษะการแก้ปัญหาและความอึด (Grit) ของเด็ก ไม่ใช่แค่ดูเกรดในเรซูเม่</li>
+            <li>ได้เข้าถึง <em>Talent Book</em> รายบุคคล</li>
+            <li>เปิดมุมมองต่อไอเดียตลาดใหม่ๆ ที่องค์กรใหญ่อาจคิดไม่ถึง (Unfiltered Gen Z Insights)</li>
+          </ul>
+        </div>
+        <div class="sub-card" style="border-top: 3px solid var(--white);">
+          <h4 style="color: var(--white);">คุณค่าสำหรับผู้เข้าร่วม (ผู้ชนะ)</h4>
+          <ul style="font-size: 0.9rem; padding-left: 16px; color: #D4D4D4;">
+            <li><strong>Builder's Toolkit:</strong> Cloud credits, domain ฟรี, เครื่องมือ AI และ SaaS</li>
+            <li><strong>Fast-Track Incubation:</strong> สิทธิ์เข้าร่วม YEAH Incubation Hub 3 เดือน พร้อม Mentor ประกบ</li>
+            <li><strong>Business Matching:</strong> การแนะนำเข้าพบ Partner และ Angel Investors แบบปิด</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: REVENUE STREAMS -->
+    <section class="slide-card">
+      <div class="slide-title"><span class="number">08</span> PROPOSED REVENUE STREAMS FOR YEAH</div>
+      <p>โมเดลสร้างรายได้เบื้องต้น:</p>
+
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>ช่องทางรายได้ (Stream)</th>
+            <th>กลุ่มเป้าหมาย</th>
+            <th>ราคาข้อเสนอ (โดยประมาณ)</th>
+            <th>สิ่งที่ผู้จ่ายจะได้รับ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sponsorship Package</strong></td>
+            <td>องค์กรใหญ่ / VC / Tech Firms</td>
+            <td>30,000 - 100,000 THB</td>
+            <td>Logo ในทุกสื่อ, สิทธิ์ Keynote ใน Day 1, สิทธิ์ส่งแมวมองใน Day 7, และเข้าถึง Talent Book ฉบับเต็ม</td>
+          </tr>
+          <tr>
+            <td><strong>Observer Tickets</strong></td>
+            <td>HR Recruiter / เจ้าของ SME / Angel Investors</td>
+            <td>1,500 - 2,500 THB / ที่นั่ง</td>
+            <td>สิทธิ์เข้าร่วมสังเกตการณ์ Day 7 Roundtable, Scouting Guide สรุปผลงาน และร่วม Live Fundraise</td>
+          </tr>
+          <tr>
+            <td><strong>Incubation Hub Entry (Day 7)</strong></td>
+            <td>ทีมที่ผ่าน Validation และต้องการลุยต่อ</td>
+            <td>
+              <em>Option 1:</em> มัดจำ 1,500 THB (คืนเมื่อบรรลุ Milestone)<br>
+              <em>Option 2:</em> สมาชิก 490 THB / เดือน (3 เดือน)
+            </td>
+            <td>คัดกรองความมุ่งมั่น ป้องกันการ Ghosting หลังจบงาน ได้รับคำปรึกษาพิเศษและ Connection ต่อเนื่อง</td>
+          </tr>
+          <tr>
+            <td><strong>Applicant Commitment Fee</strong></td>
+            <td>ผู้ผ่านการคัดเลือกเข้า Day 1</td>
+            <td>199 - 299 THB / คน</td>
+            <td>ครอบคลุมค่าอาหารกลางวัน Day 1 และลดอัตราการสละสิทธิ์กะทันหัน (No-show Drop-off)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 9: RISK & MITIGATION MATRIX -->
+    <section class="slide-card">
+      <div class="slide-title"><span class="number">09</span> RISK ASSESSMENT & MITIGATION</div>
+
+      <div class="grid-2">
+        <div class="sub-card">
+          <span class="risk-badge">RISK 1</span>
+          <h4>ผู้เข้าร่วมหมดไฟช่วงกลางสัปดาห์ (Mid-week Burnout)</h4>
+          <p><strong>แนวทางป้องกัน:</strong> ออกแบบการส่งงานแบบ Micro-milestones ผ่าน Day 3 Discord Standup และ Day 5 Unconventional Hack ช่วยให้มีเป้าหมายสั้นๆ ไม่ต้องรอส่งทีเดียวในวันสุดท้าย</p>
+        </div>
+
+        <div class="sub-card">
+          <span class="risk-badge">RISK 2</span>
+          <h4>ทีมทิ้งโปรเจกต์ หรือส่งมอบของไม่ทันกำหนด (Ghosting / Delay)</h4>
+          <p><strong>แนวทางป้องกัน:</strong> ใช้ <strong>ระบบ YEAH Central Escrow</strong> เงินบริจาค/มัดจำจากผู้สนับสนุนจะไม่ถูกโอนให้ทีมทันที แต่จะถูกพักไว้ที่ YEAH จนกว่าจะปล่อย MVP ใน 3 เดือน หากทีมล้มเลิก เงินจะถูกนำไปบริจาคเพื่อการกุศลอย่างโปร่งใส ป้องกันปัญหาทางกฎหมายและความน่าเชื่อถือ</p>
+        </div>
+
+        <div class="sub-card">
+          <span class="risk-badge">RISK 3</span>
+          <h4>การปั๊มยอด Waitlist ปลอม หรือขอให้เพื่อนช่วยกด (Metric Manipulation)</h4>
+          <p><strong>แนวทางป้องกัน:</strong> ใช้วิธีวัดผลแบบเน้นยอด Micro-transaction จริง (1-10 บาท) หรือการกดขอนัดคุยรายละเอียด ร่วมกับการคิดสัดส่วน Conversion Rate ไม่นับแค่ยอดวิวหรืออีเมลเปล่า</p>
+        </div>
+
+        <div class="sub-card">
+          <span class="risk-badge">RISK 4</span>
+          <h4>สมองล้าและ Burnout ในช่วงบ่ายของ Day 1</h4>
+          <p><strong>แนวทางป้องกัน:</strong> จัดเวลาพักเที่ยง 1 ชั่วโมงแบบ "Screens-Off" อย่างเคร่งครัด และช่วงบ่ายเปลี่ยนห้องให้มีเสียงเพลง บรรยากาศสบายๆ พร้อมน้ำและขนม และทีม Tech คอยช่วยแก้ปัญหาแบบ hands-on</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTNOTE / DISCLAIMER -->
+    <footer class="footnote">
+      * หมายเหตุ: เอกสารฉบับนี้เป็นข้อเสนอแนะเบื้องต้น (Proposal Draft) เพื่อการระดมสมองภายใน YEAH Core Team รายละเอียดโครงสร้างราคา สปอนเซอร์แพ็กเกจ และกระบวนการทางกฎหมาย/การเงินจะถูกนำไปไฟนอลร่วมกับทีมอื่น ๆ ต่อไป
+    </footer>
+
+  </div>
+
+</body>
+</html>
